@@ -1,3 +1,12 @@
+const DEBOUNCE_DURATION         = 1000
+const DOT_COUNT                 = 50
+const DOT_SIZE_MINIMUM          = 5
+const DOT_SIZE_VARIANCE         = 5
+const HORIZONTAL_SPEED_MINIMUM  = 4000
+const HORIZONTAL_SPEED_VARIANCE = 4000
+const VERTICAL_SPEED_MINIMUM    = 4000
+const VERTICAL_SPEED_VARIANCE   = 4000
+
 if(document.readyState === 'complete') {
   init()
 } else {
@@ -19,7 +28,7 @@ function init() {
     debouncer = setTimeout(() => {
       debouncer = null
       run()
-    }, 1000)
+    }, DEBOUNCE_DURATION)
   })
 
   run()
@@ -36,16 +45,16 @@ function reset() {
 function run() {
   if(debouncer) return
   
-  console.log('starting graphics!')
+  console.log('(re)starting graphics!')
   
   reset()
   
-  const dotSpacing = height / 50
+  const dotSpacing = height / DOT_COUNT
   let rects = []
   let y = 0
 
   while(y < height) {
-    const dotSize = Math.floor(Math.random() * 5 + 5)
+    const dotSize = Math.floor(Math.random() * DOT_SIZE_VARIANCE + DOT_SIZE_MINIMUM)
     let r = canvas.rect(dotSize, dotSize)
     r.y(y)
     rects.push(r)
@@ -76,7 +85,7 @@ function run() {
     r.x(startX)
     
     // horizontal
-    r.animate(Math.random() * 4000 + 1000, 0, 'absolute')
+    r.animate(Math.random() * HORIZONTAL_SPEED_VARIANCE + HORIZONTAL_SPEED_MINIMUM, 0, 'absolute')
     .loop(times, swing)
     .ease('<>')
     .attr({
@@ -88,7 +97,7 @@ function run() {
     .loops(Math.random() * 2)
     
     // vertical
-    r.animate(Math.random() * 4000 + 4000, 0, 'absolute')
+    r.animate(Math.random() * VERTICAL_SPEED_VARIANCE + VERTICAL_SPEED_MINIMUM, 0, 'absolute')
     .loop(times, swing)
     .ease('<>')
     .attr({
