@@ -40,7 +40,7 @@ function run() {
   
   reset()
   
-  const dotSpacing = 15
+  const dotSpacing = height / 50
   let rects = []
   let y = 0
 
@@ -56,38 +56,37 @@ function run() {
     
     // lor: left or right
     let lor = Math.floor(Math.random() * 2)
-    let start = lor ? '#000' : '#f54'
-    let end = lor ? '#f54' : '#000'
-    r.fill(start)
+
+    let startColor = '#000'
+    let endColor = '#f54'
+
+    let startX = lor ? 0 : width - r.width()
+    let endX = lor ? width - r.width() : 0
+
+    let times = Infinity
+    let swing = true
+
+    r.x(startX)
+    r.fill(startColor)
     
     // horizontal
-    r.animate({
-      duration: Math.random() * 4000 + 1000,
-      swing: true,
-      times: Infinity,
-      when: 'now',
-      delay: 0
-    })
+    r.animate(Math.random() * 4000 + 1000, 0, 'absolute')
+    .loop(times, swing)
     .ease('<>')
     .attr({
-      fill: end,
+      fill: endColor,
       rx: r.width()/2,
       ry: r.width()/2,
-      x: width - r.width()
+      x: endX
     })
     .loops(Math.random() * 2)
     
     // vertical
-    r.animate({
-      duration: Math.random() * 4000 + 1000,
-      swing: true,
-      times: Infinity,
-      when: 'now',
-      delay: 0
-    })
+    r.animate(Math.random() * 4000 + 4000, 0, 'absolute')
+    .loop(times, swing)
     .ease('<>')
     .attr({
-      y: r.y() + (Math.random() * 250) - 125
+      y: r.y() + (Math.random() * height)
     })
     .loops(Math.random() * 2)
   })
