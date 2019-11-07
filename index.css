@@ -1,0 +1,27 @@
+body {
+  background-color: #802820;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  text-align: center;
+}
+
+#canvas {
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  z-index: -1;
+}
+
+#title {
+  background-color: rgba(255, 255, 255, .3);
+  border: .125em solid rgba(255, 255, 255, .6);
+  border-radius: .5em;
+  font-family: Arial, Helvetica, sans-serif;
+  left: 30%;
+  padding: .5em;
+  position: fixed;
+  right: 30%;
+  top: 40%;
+  z-index: 1;
+}
