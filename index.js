@@ -7,6 +7,8 @@ const HORIZONTAL_SPEED_VARIANCE = 4000
 const VERTICAL_SPEED_MINIMUM    = 4000
 const VERTICAL_SPEED_VARIANCE   = 4000
 
+const DOT_COUNT_LIGHT           = Math.floor(DOT_COUNT / 3)
+
 if(document.readyState === 'complete') {
   init()
 } else {
@@ -18,6 +20,8 @@ if(document.readyState === 'complete') {
 let debouncer = null
 
 let canvas, width, height
+
+let smallScreen = false
 
 function init() {
   canvas = SVG()
@@ -38,6 +42,8 @@ function reset() {
   width = document.body.scrollWidth
   height = document.body.scrollHeight
 
+  smallScreen = height < 750 ? true : false
+
   canvas.size(width, height)
   canvas.clear()
 }
@@ -49,7 +55,7 @@ function run() {
   
   reset()
   
-  const dotSpacing = height / DOT_COUNT
+  const dotSpacing = height / (smallScreen ? DOT_COUNT_LIGHT : DOT_COUNT)
   let rects = []
   let y = 0
 
