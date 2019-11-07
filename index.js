@@ -56,9 +56,14 @@ function run() {
     
     // lor: left or right
     let lor = Math.floor(Math.random() * 2)
+    // cos: circle or square
+    let cos = Math.floor(Math.random() * 2)
 
     let startColor = '#000'
     let endColor = '#f54'
+
+    let startRadius = cos ? r.width()/2 : 0
+    let endRadius = cos ? 0 : r.width()/2
 
     let startX = lor ? 0 : width - r.width()
     let endX = lor ? width - r.width() : 0
@@ -66,8 +71,9 @@ function run() {
     let times = Infinity
     let swing = true
 
-    r.x(startX)
     r.fill(startColor)
+    r.radius(startRadius, startRadius)
+    r.x(startX)
     
     // horizontal
     r.animate(Math.random() * 4000 + 1000, 0, 'absolute')
@@ -75,8 +81,8 @@ function run() {
     .ease('<>')
     .attr({
       fill: endColor,
-      rx: r.width()/2,
-      ry: r.width()/2,
+      rx: endRadius,
+      ry: endRadius,
       x: endX
     })
     .loops(Math.random() * 2)
