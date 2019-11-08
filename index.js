@@ -6,6 +6,9 @@ const HORIZONTAL_SPEED_MINIMUM  = 4000
 const HORIZONTAL_SPEED_VARIANCE = 4000
 const VERTICAL_SPEED_MINIMUM    = 4000
 const VERTICAL_SPEED_VARIANCE   = 4000
+const CONTAINER_NAME            = 'canvas'
+const OVERFLOW_FACTOR           = 3
+const OVERFLOW                  = (DOT_SIZE_MINIMUM + DOT_SIZE_VARIANCE) * OVERFLOW_FACTOR
 
 const DOT_COUNT_LIGHT           = Math.floor(DOT_COUNT / 3)
 
@@ -23,9 +26,11 @@ let canvas, width, height
 
 let smallScreen = false
 
+let container = document.getElementById(CONTAINER_NAME)
+
 function init() {
   canvas = SVG()
-    .addTo('#canvas')
+    .addTo('#' + CONTAINER_NAME)
 
   window.addEventListener('resize', () => {
     if(debouncer) return
@@ -39,8 +44,8 @@ function init() {
 }
 
 function reset() {
-  width = document.body.scrollWidth
-  height = document.body.scrollHeight
+  width = container.clientWidth
+  height = container.clientHeight
 
   smallScreen = height < 750 ? true : false
 
@@ -80,8 +85,8 @@ function run() {
     let startRadius = cos ? r.width()/2 : 0
     let endRadius = cos ? 0 : r.width()/2
 
-    let startX = lor ? 0 : width - r.width()
-    let endX = lor ? width - r.width() : 0
+    let startX = lor ? leftMostX() : rightMostX(r)
+    let endX = lor ? rightMostX(r) : leftMostX()
 
     let times = Infinity
     let swing = true
@@ -107,7 +112,7 @@ function run() {
     .loop(times, swing)
     .ease('<>')
     .attr({
-      y: r.y() + (Math.random() * height)
+      y: r.y() + (Math.random() * height - (height/2))
     })
     .loops(Math.random() * 2)
   })
@@ -119,4 +124,11 @@ function clearCanvas() {
   while(node.firstChild) {
     node.removeChild(node.firstChild)
   }
+}
+
+function leftMostX() {
+  return 0 - OVERFLOW
+}
+function rightMostX(dot) {
+  return width - dot.width() + OVERFLOW
 }
