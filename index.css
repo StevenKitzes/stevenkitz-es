@@ -1,35 +1,238 @@
+a.a-light, a.a-light:active, a.a-light:focus, a.a-light:hover, a.a-light:visited {
+  color: #bbb !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+}
+
 body {
-  background-color: #802820;
-  margin: 0;
-  overflow: hidden;
-  padding: 0;
+  background-color: black;
+  color: #bbb;
+  display: inline-block;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0px;
+  padding: 0px;
   text-align: center;
 }
 
-#canvas {
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-  position: fixed;
-  width: 100vw;
-  z-index: -1;
+p {
+  margin-left: auto;
+  margin-right: auto;
 }
 
-#title {
+img.github-icon {
+  content: url("media/github-mark-white.png");
+  height: 32px;
+  width: 32px;
+}
+
+.portfolio-description {
+  align-items: center;
+  display: flex;
+  flex-grow: 1;
+  font-size: 1.2em;
+  grid-area: description;
+  min-height: 40px;
+  margin: .2em;
+  padding: 0 0.25em;
+  text-align: center;
+}
+.portfolio-github {
+  align-items: center;
+  display: flex;
+  grid-area: github;
+  height: 40px;
+  justify-content: center;
+  margin: 0.5em 0;
+  min-height: 40px;
+  width: 40px;
+}
+.portfolio-sample {
+  align-items: center;
+  display: flex;
+  grid-area: sample;
+  justify-content: center;
+  margin: 0.5em 0 0.5em 1em;
+  min-height: 40px;
+  max-width: 150px;
+  min-width: 150px;
+}
+.portfolio-section {
+  display: grid;
+  grid-template-areas: 'sample github' 'description description';
+  grid-template-columns: 1fr calc(40px + 1em);
+  margin-top: 1.5em;
+}
+
+/* portfolio sample stylings */
+.portfolio-sample.skedge {
+  background-color: #EF3F58;
+  border: 3px solid #999;
+  border-radius: 1em;
+  color: white;
+}
+.portfolio-sample.travelator {
+  background-image: url("media/travelator.jpg");
+  background-size: 300px;
+  border: 3px solid #999;
+  border-radius: 1em;
+  color: white;
+}
+.portfolio-sample.color-clouds {
+  border: 3px solid #999;
+  border-radius: 1em;
+  color: white;
+  overflow: hidden;
+}
+.sample-container.color-clouds {
+  position: relative;
+  width: 150px;
+}
+.color-clouds-title {
+  position: absolute;
+}
+.portfolio-sample.atomique {
+  background-color: white;
+  border: 3px solid #0ae;
+  border-radius: 1em;
+  color: black;
+}
+#atomique {
+  position: relative;
+  z-index: 5;
+}
+/* portfolio sample stylings */
+
+.sample-container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 40px;
+  width: 150px;
+}
+
+.section-container {
+  background-color: #111;
+  border: .125em solid rgba(255, 255, 255, .6);
+  border-radius: .5em;
+  display: inline-block;
+  margin: 2em auto;
+  padding: 1em 0.5em;
+  max-width: 85%;
+  min-width: 85%;
+}
+.section-container.less-padding {
+  padding: 1em .5em;
+}
+
+.story-blurb {
+  margin: 0 auto 1em;
+  max-width: 90%;
+  text-align: justify;
+}
+
+.story-title {
+  font-size: 1.25em;
+  font-weight: 600;
+}
+
+.subtitle {
+  font-size: 1.33em;
+  font-weight: 600;
+}
+
+.title {
+  font-size: 1.5em;
+  font-weight: 900;
+}
+.title.main {
+  font-size: 2em;
+}
+
+#page {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+}
+
+#portfolio-container {
+  display: flex;
+  flex-direction: column;
+}
+
+#title-container {
   background-color: rgba(255, 255, 255, .3);
   border: .125em solid rgba(255, 255, 255, .6);
   border-radius: .5em;
-  font-family: Arial, Helvetica, sans-serif;
-  left: 30%;
+  color: black;
+  display: inline-block;
+  margin: 2em auto 1em;
   padding: .5em;
-  position: fixed;
-  right: 30%;
-  top: 40%;
-  z-index: 1;
 }
-#title > svg {
-  left: 0;
-  overflow: visible;
-  position: absolute;
-  top: 0;
+
+#title-flex {
+  display: flex;
+  flex-direction: column;
+  padding: 0 1em;
+}
+
+@media screen and (min-width: 600px) {
+  .story-blurb {
+    max-width: 500px;
+  }
+}
+
+@media screen and (min-width: 850px) {
+  .portfolio-description {
+    font-size: unset;
+    margin: 1em;
+    text-align: start;
+  }
+  .portfolio-sample {
+    grid-area: unset;
+    max-width: 300px;
+    min-width: 300px;
+  }
+  .portfolio-section {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    grid-template-areas: unset;
+    grid-template-columns: unset;
+    justify-content: space-between;
+    min-height: 40px;
+    min-width: unset;
+    max-width: unset;
+  }
+  .sample-container {
+    width: 250px;
+  }
+  .sample-container.color-clouds {
+    width: 300px;
+  }
+  .section-container {
+    padding: 1em 2em;
+    max-width: 70%;
+    min-width: 70%;
+  }
+  .section-container.storytime {
+    max-width: 700px;
+    min-width: 700px;
+  }
+  .story-blurb {
+    max-width: 600px;
+  }
+  .subtitle {
+    font-size: unset;
+  }
+  .title.main {
+    font-size: 2.5em;
+  }
+
+  #title-container {
+    margin: 5em auto 3em;
+  }
+  
+  #title-flex {
+    padding: 0 2em;
+  }
 }
