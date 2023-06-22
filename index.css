@@ -1,7 +1,6 @@
 a.a-light, a.a-light:active, a.a-light:focus, a.a-light:hover, a.a-light:visited {
   color: #bbb !important;
   font-weight: 600 !important;
-  text-decoration: none !important;
 }
 
 body {
@@ -61,6 +60,10 @@ img.github-icon {
   grid-template-areas: 'sample github' 'description description';
   grid-template-columns: 1fr calc(40px + 1em);
   margin-top: 1.5em;
+}
+
+.portfolio-section > a {
+  text-decoration: none !important;
 }
 
 /* portfolio sample stylings */
